@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Task List 2024</h1>
+        <form id="new-task-form">
+            <input type="text" id="new-task-input" placeholder="What you want to plan?">
+            <input type="submit" id="new-task-submit" value="Add Task" placeholder="Add Task" >
+        </form>
+    </header>
+
+    <main>
+        <section class="task-list">
+            <h2>Tasks</h2>
+
+            <div id="tasks">
+               <!-- <div class="task">
+                <div class="content">
+                    <input type="text" class="text" value="My Shiny Task" readonly>
+                </div>
+                <div class="actions">
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                </div>
+            </div>-->
+            </div>
+        </section>
+    </main>
+    <script>
+
+
+   
+    document.addEventListener("DOMContentLoaded", function () {
+        const newTaskForm = document.getElementById("new-task-form");
+        const newTaskInput = document.getElementById("new-task-input");
+        const tasksContainer = document.getElementById("tasks");
+
+        newTaskForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Create a new task element
+            const task = document.createElement("div");
+            task.className = "task";
+
+            // Create content div
+            const contentDiv = document.createElement("div");
+            contentDiv.className = "content";
+
+            // Create input for task text
+            const textInput = document.createElement("input");
+            textInput.type = "text";
+            textInput.className = "text";
+            textInput.value = newTaskInput.value;
+            textInput.readOnly = true;
+
+            // Append text input to content div
+            contentDiv.appendChild(textInput);
+
+            // Create actions div
+            const actionsDiv = document.createElement("div");
+            actionsDiv.className = "actions";
+
+            // Create edit button
+            const editButton = document.createElement("button");
+            editButton.className = "edit";
+            editButton.textContent = "Edit";
+
+            // Create delete button
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "delete";
+            deleteButton.textContent = "Delete";
+
+            // Add click event listener for delete button
+            deleteButton.addEventListener("click", function () {
+                tasksContainer.removeChild(task);
+            });
+
+            // Add click event listener for edit button
+            editButton.addEventListener("click", function () {
+                textInput.readOnly = !textInput.readOnly;
+                if (textInput.readOnly) {
+                    textInput.classList.remove("editable");
+                } else {
+                    textInput.classList.add("editable");
+                }
+            });
+
+            // Append buttons to actions div
+            actionsDiv.appendChild(editButton);
+            actionsDiv.appendChild(deleteButton);
+
+            // Append content and actions div to task
+            task.appendChild(contentDiv);
+            task.appendChild(actionsDiv);
+
+            // Append task to tasks container
+            tasksContainer.appendChild(task);
+
+            // Clear the input field
+            newTaskInput.value = "";
+        });
+    });
+</script>
+
+
+
+    
+</body>
+</html>
